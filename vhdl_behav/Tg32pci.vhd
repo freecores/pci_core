@@ -42,7 +42,7 @@ library ieee,work;
   use work.PCI_Def.all;	
 -----------------------------------------------------------------------
 -----------------------------------------------------------------------
-entity Target32PCI is
+entity TG32PCI is
     generic (
       devtype : string(1 to 4); -- type of the device (Fast, Medi, Slow)
       tdelay  : Time;   -- delay time parameter when the device will change
@@ -70,7 +70,7 @@ entity Target32PCI is
         -- System signals (2)
         CLK      : in    Std_Logic;
         RST_N    : in    Std_Logic);
-end Target32PCI;--================ End of entity ====================--
+end TG32PCI; --=================== End of entity ====================--
 -----------------------------------------------------------------------
 -- Architecture for Target device PCI bus 33MHZ 32 bit configuration
 -----------------------------------------------------------------------
