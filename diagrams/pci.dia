@@ -1,0 +1,64 @@
+VGUIformatVersion 1.004000
+
+
+
+
+DEFINE_MODULE:  new_unnamed_submodule0
+
+  DEFINE_DEVICE_INSTANCES:
+  END_DEFINE_DEVICE_INSTANCES.
+
+  DEFINE_TOPOLOGY:
+  END_DEFINE_TOPOLOGY.
+
+
+END_DEFINE_MODULE.
+
+
+
+DEFINE_MODULE:  pci_controller
+
+  PORT_LIST( RST_n, CLK, DEVSEL_n, STOP, FRAME_n, TRDY_n,
+		 IRDY_n, IDSEL, CBE, AD, SERR_n, PERR_n,
+		 PAR );
+
+  DEFINE_DEVICE_INSTANCES:
+	trget_machine  =  Target_machine	 |  5.600000 4.400000  6.900000 7.300000 
+	Parity  =  Parity	 |  5.600000 2.300000  6.800000 4.200000 
+  END_DEFINE_DEVICE_INSTANCES.
+
+  DEFINE_TOPOLOGY:
+    Parity  parity_PAR     pci_controller  PAR  half-duplex  0  Std_logic  L0  3.500000 2.500000  5.600000 2.500000 
+    Parity  PERR_par_n     pci_controller  PERR_n  half-duplex  0  Std_logic  L1  3.500000 2.700000  5.600000 2.700000 
+    Parity  SERR_par_n     pci_controller  SERR_n  half-duplex  0  Std_logic  L2  3.500000 2.900000  5.600000 2.900000 
+    trget_machine  AD_trgt    Parity  AD_trgt  simplex  0  Std_logic_vector(31#downto#0)  AD  5.600000 3.300000  4.300000 3.300000  4.300000 5.500000  5.600000 5.500000 
+    pci_controller  AD    trget_machine  AD_trgt  half-duplex  0  Std_logic_vector(31#downto#0)  AD  5.600000 5.500000  5.300000 5.500000  3.600000 5.500000 
+    trget_machine  CBE_trgt_n    Parity  CBE_trgt_n  simplex  0  Std_logic_vector(3#downto#0)  CBE  5.600000 3.700000  4.500000 3.700000  4.500000 5.700000  5.600000 5.700000 
+    pci_controller  CBE    trget_machine  CBE_trgt_n  half-duplex  0  Std_logic_vector(3#downto#0)  CBE  5.600000 5.700000  3.600000 5.700000 
+    pci_controller  IDSEL    trget_machine  IDSEL_trgt  simplex  0  Std_logic  L7  5.600000 6.000000  3.600000 6.000000 
+    pci_controller  IRDY_n    trget_machine  IRDY_trgt_n  simplex  0  Std_logic  L8  5.600000 6.200000  3.600000 6.200000 
+    trget_machine  TRDY_trgt_n     pci_controller  TRDY_n  simplex  0  Std_logic  L9  3.600000 6.400000  5.600000 6.400000 
+    pci_controller  FRAME_n    trget_machine  FRAME_trgt_n  simplex  0  Std_logic  L10  5.600000 6.600000  3.600000 6.600000 
+    trget_machine  STOP_trgt_n     pci_controller  STOP  simplex  0  Std_logic  L11  3.600000 6.800000  5.600000 6.800000 
+    trget_machine  DEVSEL_trgt_n     pci_controller  DEVSEL_n  half-duplex  0  Std_logic  L12  3.600000 7.000000  5.600000 7.000000 
+    pci_controller  CLK    trget_machine  CLK  simplex  0  Std_logic  CLK  5.600000 4.600000  3.700000 4.600000 
+    trget_machine  CLK    Parity  CLK  simplex  0  Std_logic  CLK  5.600000 4.100000  4.800000 4.100000  4.800000 4.600000  5.600000 4.600000 
+    pci_controller  RST_n    trget_machine  RST_n  simplex  0  Std_logic  RST_n  5.600000 5.000000  3.700000 5.000000 
+    trget_machine  RST_n    Parity  RST_n  simplex  0  Std_logic  RST_n  5.600000 3.900000  4.700000 3.900000  4.700000 5.000000  5.600000 5.000000 
+    trget_machine  ADDR_trgt    DEV_NULL    simplex  0  Std_logic_vector(LOCALADD#-#1#downto#0)  L17  8.900001 4.600000  6.900000 4.600000 
+    trget_machine  DATA_trgt    DEV_NULL    half-duplex  0  Std_logic_vector(31#downto#0)  L17  8.900001 4.900000  6.900000 4.900000 
+    DEV_NULL  unknown_port    trget_machine  TABORT  simplex  0  Std_logic  0  6.900000 7.200000  8.900001 7.200000 
+    DEV_NULL  _    trget_machine  TRETRY  simplex  0  Std_logic  0  6.900000 7.000000  8.900001 7.000000 
+  END_DEFINE_TOPOLOGY.
+
+GENERIC: LOCALADD : integer := 64
+  ANNOTATION: 3.821249 8.066763 PCI main block diagram
+  ANNOTATION: 3.779719 8.403428 PCI OpenCores group
+  ANNOTATION: 3.788020 8.736729 Jamil Khatib
+  BOUNDINGBOX:  3.700000 7.600000  7.100000 9.000001  7.100000 7.600000  3.700000 7.600000  3.700000 9.000001  7.100000 9.000001 
+
+END_DEFINE_MODULE.
+
+
+
+
